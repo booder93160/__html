@@ -22,7 +22,8 @@ function req_db($req, $params = [])
 $req = $_SERVER["REQUEST_URI"];
 
 header("Content-Type: application/json");
-
+$username = htmlspecialchars($_POST["username"]);
+$password = htmlspecialchars($_POST["password"]);
 $toret = array();
 
 if ($req == "/api/calcul/")
@@ -67,10 +68,12 @@ if ($req == "/api/user/create/")
 {
     if (isset($_POST["username"]) && isset($_POST["password"]))
     {
+
         // Requête pour créer un nouvel utilisateur
-        $toret = req_db("INSERT INTO users (username, password, admin) VALUES(:username, :password, 0);", [
-            ':username' => str_replace("'", "", $_POST["username"]),
-            ':password' => str_replace("'", "", $_POST["password"])
+        $toret = req_db("INSERT INTO users(username, password, admin) VALUES(:username, :password, :admin)", [
+            ':username' => $username,
+            ':password' => password_hash($password,PASSWORD_BCRYPT),
+            ':admin' => 1
         ]);
     }
 }

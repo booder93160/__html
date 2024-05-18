@@ -47,16 +47,16 @@ if (!empty($_POST["username"]) && !empty($_POST["password"]))
                     }
                     else
                     {
-                        printf("L'utilisateur n'existe pas ou bien le mot de passe incorrect ");
+                        printf("<h2> L'utilisateur n'existe pas ou bien le mot de passe incorrect </h2>");
                     }
 
             }else{
-                    printf("L'utilisateur n'existe pas ou bien le mot de passe est incorrect ");}
+                    printf("<h2> L'utilisateur n'existe pas ou bien le mot de passe est incorrect </h2>  ");}
         }else{
-                printf("L'utilisateur n'existe pas ou bien le mot de passe est incorrect ");}
+                printf("<h2> L'utilisateur n'existe pas ou bien le mot de passe est incorrect </h2> ");}
 
         }else{
-    printf("Veuillez remplir tous les champs");
+    printf("<h2> Veuillez remplir tous les champs</h2> ");
     }
 
 ?>
