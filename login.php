@@ -42,7 +42,9 @@ if (!empty($_POST["username"]) && !empty($_POST["password"]))
                         printf("Successfully connected. Redirecting...");
                         $_SESSION["CONNECTED"] = $a["admin"];
                         $_SESSION["USERNAME"] = $a["username"];
+                        // Générer un identifiant de session aléatoire
                         $session_id = bin2hex(random_bytes(32));
+                        // Définition d'un cookie de session avec l'identifiant de session aléatoire
                         setcookie("JSESSID", $session_id, time() + 3600, "/", "", false, true);
                     }
                     else
