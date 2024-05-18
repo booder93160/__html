@@ -21,17 +21,18 @@ if (!empty($_POST["username"]) && !empty($_POST["password"]))
     $password = htmlspecialchars($_POST["password"]);
 
     // Requête pour vérifier si l'utilisateur existe déjà
-    $a = req_db("SELECT * FROM users WHERE username = :username", [
+    $userexist = req_db("SELECT * FROM users WHERE username = :username LIMIT 1", [
         ':username' => $username
     ]);
 
-    if (! $a)
+    if (! $userexist)
     {
         // Utilisation de la requête préparée pour insérer un nouvel utilisateur
         printf("Successfully created user. Redirecting...");
-        req_db("INSERT INTO users(username, password, admin) VALUES(:username, :password, 1)", [
+        req_db("INSERT INTO users(username, password, admin) VALUES(:username, :password, :admin)", [
             ':username' => $username,
-            ':password' => $password
+            ':password' => password_hash($password,PASSWORD_BCRYPT),
+            ':admin' => 1
         ]);
     }
     else
