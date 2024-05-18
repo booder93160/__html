@@ -56,31 +56,6 @@ if ($req == "/api/calcul/")
     }
 }
 
-if ($req == "/api/user/")
-{
-    if (isset($_POST["username"]))
-    {
-        // Requête pour récupérer les informations de l'utilisateur
-        $toret = req_db("SELECT * FROM users WHERE username = :username;", [
-            ':username' => str_replace("'", "", $_POST["username"])
-        ]);
-    }
-}
-
-if ($req == "/api/user/create/")
-{
-    if (isset($_POST["username"]) && isset($_POST["password"]))
-    {
-
-        // Requête pour créer un nouvel utilisateur
-        $toret = req_db("INSERT INTO users(username, password, admin) VALUES(:username, :password, :admin)", [
-            ':username' => $username,
-            ':password' => password_hash($password,PASSWORD_BCRYPT),
-            ':admin' => 1
-        ]);
-    }
-}
-
 if ($req == "/api/user/update/")
 {
     if (isset($_POST["username"]))

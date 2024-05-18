@@ -50,12 +50,12 @@ if (!empty($_POST["username"]) && !empty($_POST["password"]))
             <p style='color:red;':> Au moins une lettre minuscule.</p>
             <p style='color:red;':> Au moins un chiffre.</p> 
             <p style='color:red;':> Au moins un caractère spécial </p>");}
-    {
-        printf(" <h2> Failed creating user. Redirecting...</h2>");
-    }
-}else{
-    printf("Veuillez remplir tous les champs");
-}}
+        }
+        else{printf(" <h2> Failed creating user. Redirecting...</h2>");
+        }
+    }else{
+        printf("Veuillez remplir tous les champs");}
+
 ?>
 <script>
     window.onload = function() { setTimeout(function() { window.location.href = "/"; }, 4000); }
