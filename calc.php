@@ -126,7 +126,8 @@
 			$results = $db->query("SELECT * FROM calculs");
 			while($row = $results->fetchArray())
 			{
-				printf('<tr><td>%s</td><td>%s</td><td>%s</td></tr>', $row["ip_addr"], $row["calcul"], $row["user_agent"]);
+        // Echappement des caractères pour empêcher l'exécution de scripts malveillants
+				printf('<tr><td>%s</td><td>%s</td><td>%s</td></tr>', htmlspecialchars($row["ip_addr"]), htmlspecialchars($row["calcul"]), htmlspecialchars($row["user_agent"]));
 			}
 
 			printf('</tbody></table></div><form action="/disconnect/" method="POST"><input type="submit" value="Disconnect !"/></form>');
